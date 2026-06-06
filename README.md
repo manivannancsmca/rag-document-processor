@@ -28,4 +28,12 @@ Run these commands natively inside your host system's terminal to pull down the 
   # Pull the model for prompt reasoning and content summarization
   ollama pull llama3.2
 
+  docker-compose up -d
+
+  # Launch the Core Engine Application
+  java -XX:+UseZGC -jar target/rag-document-processor-1.0.0.jar
+
+  # Upload and Ingest a 1,000-Page Archive
+  curl -X POST -F "file=@your_massive_document.pdf" http://localhost:8080/api/v1/archive/ingest
+
 ---
