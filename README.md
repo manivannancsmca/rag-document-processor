@@ -15,3 +15,17 @@ The system coordinates structural document intelligence completely inside a loca
 5. **Contextual Retrieval Loop:** Pulls top matching information blocks via similarity scores and supplies them to a localized reasoning model to build responses.
 
 ---
+
+## 🚀 Operationl Deployment & Verification Guide
+
+1. Set Up Local LLM Engines
+Run these commands natively inside your host system's terminal to pull down the foundational intelligence models:
+
+```bash
+  # Pull the model for high-dimensional vector math calculations
+  ollama pull nomic-embed-text
+
+  # Pull the model for prompt reasoning and content summarization
+  ollama pull llama3.2
+
+---
