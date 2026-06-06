@@ -37,3 +37,20 @@ Run these commands natively inside your host system's terminal to pull down the 
   curl -X POST -F "file=@your_massive_document.pdf" http://localhost:8080/api/v1/archive/ingest
 
 ---
+
+## Validate Storage Visuals
+
+1. Open your browser and navigate to: http://localhost:8082
+2. Login using the administrative keys: admin@architecture.ai / admin_password.
+3. Register a new Server connection pointing to the host address postgres (using internal Docker DNS) on port 5432, DB rag_db, user senior_arch.
+4. Navigate to the document_embeddings table to visually inspect your text segments alongside their generated floating-point array keys.
+
+---
+
+## Query the Archive Context
+
+```bash
+  curl "http://localhost:8080/api/v1/archive/query?prompt=Summarize+the+operational+guidelines+in+section+four"
+
+---
+
