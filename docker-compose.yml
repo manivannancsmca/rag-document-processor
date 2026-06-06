@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: postgres-vector-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: rag_db
+      POSTGRES_USER: senior_arch
+      POSTGRES_PASSWORD: enterprise_password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U senior_arch -d rag_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - rag-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-web-ui
+    ports:
+      - "8082:80" # Maps port 8082 on your machine to the pgAdmin container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@architecture.ai
+      PGADMIN_DEFAULT_PASSWORD: admin_password
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - rag-network
+
+volumes:
+  pgdata:
+  pgadmin_data:
+
+networks:
+  rag-network:
+    driver: bridge
