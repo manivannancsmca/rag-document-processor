@@ -1,4 +1,5 @@
 services:
+
   postgres:
     image: pgvector/pgvector:pg16
     container_name: postgres-vector-db
@@ -41,3 +42,4 @@ volumes:
 networks:
   rag-network:
     driver: bridge
+    
